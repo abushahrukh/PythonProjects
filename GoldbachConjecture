@@ -1,0 +1,24 @@
+def find_primes(N):
+    prime_numbers = []
+    for J in range(2, N + 1):
+        is_prime = True
+        for p in prime_numbers:
+            if J % p == 0:
+                is_prime = False
+                break
+        if is_prime:
+            prime_numbers.append(J)
+    return prime_numbers
+
+def goldbach_up_to(N):
+    primes = find_primes(N)
+    print(f"\nPrimes up to {N}: {primes}\n")
+    prime_set = set(primes)
+    for even in range(4, N + 1, 2):
+        for p in primes:
+            if even - p in prime_set:
+                print(f"{even} = {p} + {even - p}")
+                break
+
+EnterNumber = int(input("Enter the number: "))
+goldbach_up_to(EnterNumber)
